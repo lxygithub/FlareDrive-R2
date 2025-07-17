@@ -16,7 +16,7 @@
         <img src="/assets/homescreen.png" alt="FlareDrive" style="height: 24px" />
       </a>
 
-      <input type="search" v-model="search" aria-label="Search" placeholder="输入以全局搜索文件" />
+      <input type="search" v-model="search" aria-label="Search" placeholder="输入以全局搜索文件" style="margin-left: 10px;"/>
       <div class="menu-button">
         <button class="circle" @click="showMenu = true"
           style="display: flex; align-items: center;">
@@ -647,7 +647,6 @@ export default {
 .menu-button {
   display: flex;
   position: relative;
-  margin-left: 10px;
   padding: 0 10px;
 }
 
