@@ -1,10 +1,6 @@
 <template>
-  <div class="main" 
-      @dragenter.prevent 
-      @dragover.prevent 
-      @drop.prevent="onDrop"
-      :style="{ backgroundImage: `url('${backgroundImageUrl}')` }"
-  >
+  <div class="main" @dragenter.prevent @dragover.prevent @drop.prevent="onDrop"
+    :style="{ backgroundImage: `url('${backgroundImageUrl}')` }">
     <progress v-if="uploadProgress !== null" :value="uploadProgress" max="100"></progress>
     <UploadPopup v-model="showUploadPopup" @upload="onUploadClicked" @createFolder="createFolder"></UploadPopup>
     <button class="upload-button circle" @click="showUploadPopup = true">
@@ -18,19 +14,19 @@
     <div class="app-bar">
       <a class="app-title-container" style="display: flex; align-items: center;" href="/">
         <img src="/assets/homescreen.png" alt="FlareDrive" style="height: 24px" />
-        <h1 class="app-title" style="font-size: 20px;margin: 0 25px 0 8px; user-select: none;">FlareDrive</h1>
+        <h1 class="app-title" style="font-size: 20px;margin: 0 25px 0 8px; user-select: none;">CloudFlare网盘</h1>
       </a>
 
-      <input type="search" v-model="search" aria-label="Search" placeholder="🍿 输入以全局搜索文件" />
+      <input type="search" v-model="search" aria-label="Search" placeholder="输入以全局搜索文件" />
       <div class="menu-button">
-        <button class="circle" @click="showMenu = true" style="display: flex; align-items: center;background-color: rgb(245, 245, 245);">
+        <button class="circle" @click="showMenu = true"
+          style="display: flex; align-items: center;background-color: rgb(245, 245, 245);">
           <p style="
               white-space: nowrap;
               margin: 0 10px 0 0;
               font-size: 16px;
-              font-family: '寒蝉半圆体', -apple-system, BlinkMacSystemFont, 'Segoe UI Adjusted',
-    'Segoe UI', 'Liberation Sans', sans-serif;"
-              class="menu-button-text">
+              font-family: '寒蝉半圆体', -apple-system, BlinkMacSystemFont, 'Segoe UI Adjusted','Segoe UI', 'Liberation Sans', sans-serif;"
+            class="menu-button-text">
             菜单
           </p>
           <svg t="1741761597964" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -50,9 +46,9 @@
         <li v-if="cwd !== ''">
           <div tabindex="0" class="file-item" @click="cwd = cwd.replace(/[^\/]+\/$/, '')" @contextmenu.prevent>
             <div class="file-icon">
-              <svg  viewBox="0 0 576 512"
-                xmlns="http://www.w3.org/2000/svg" width="36" height="36">
-                <path d="M384 480l48 0c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224l-400 0c-11.4 0-21.9 6-27.6 15.9L48 357.1 48 96c0-8.8 7.2-16 16-16l117.5 0c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8L416 144c8.8 0 16 7.2 16 16l0 32 48 0 0-32c0-35.3-28.7-64-64-64L298.5 96c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7L64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l23.7 0L384 480z"/>
+              <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+                <path
+                  d="M384 480l48 0c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224l-400 0c-11.4 0-21.9 6-27.6 15.9L48 357.1 48 96c0-8.8 7.2-16 16-16l117.5 0c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8L416 144c8.8 0 16 7.2 16 16l0 32 48 0 0-32c0-35.3-28.7-64-64-64L298.5 96c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7L64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l23.7 0L384 480z" />
               </svg>
             </div>
             <div class="file-info-container"><span class="file-name">返回上级目录</span></div>
@@ -60,14 +56,11 @@
           </div>
         </li>
         <li v-for="folder in filteredFolders" :key="folder">
-          <div tabindex="0" class="file-item" @click="cwd = folder" @contextmenu.prevent="
-            showContextMenu = true;
-          focusedItem = folder;
-          ">
+          <div tabindex="0" class="file-item" @click="cwd = folder" @contextmenu.prevent=" showContextMenu = true; focusedItem = folder; ">
             <div class="file-icon">
-              <svg  viewBox="0 0 576 512"
-                xmlns="http://www.w3.org/2000/svg" width="36" height="36">
-                <path d="M384 480l48 0c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224l-400 0c-11.4 0-21.9 6-27.6 15.9L48 357.1 48 96c0-8.8 7.2-16 16-16l117.5 0c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8L416 144c8.8 0 16 7.2 16 16l0 32 48 0 0-32c0-35.3-28.7-64-64-64L298.5 96c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7L64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l23.7 0L384 480z"/>
+              <svg viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg" width="36" height="36">
+                <path
+                  d="M384 480l48 0c11.4 0 21.9-6 27.6-15.9l112-192c5.8-9.9 5.8-22.1 .1-32.1S555.5 224 544 224l-400 0c-11.4 0-21.9 6-27.6 15.9L48 357.1 48 96c0-8.8 7.2-16 16-16l117.5 0c4.2 0 8.3 1.7 11.3 4.7l26.5 26.5c21 21 49.5 32.8 79.2 32.8L416 144c8.8 0 16 7.2 16 16l0 32 48 0 0-32c0-35.3-28.7-64-64-64L298.5 96c-17 0-33.3-6.7-45.3-18.7L226.7 50.7c-12-12-28.3-18.7-45.3-18.7L64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l23.7 0L384 480z" />
               </svg>
             </div>
             <div class="file-info-container"><span class="file-name" v-text="folder.match(/.*?([^/]*)\/?$/)[1]"></span>
@@ -125,7 +118,8 @@
       <div
         style="height: 50px;display: flex; justify-content: center; align-items: center; padding:10px; background: #ddd; margin: 0 0 10px 0; border-radius: 8px;">
         <div v-text="focusedItem.key || focusedItem" class="contextmenu-filename" @click.stop.prevent
-          style="height:20px;width: 100%; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></div>
+          style="height:20px;width: 100%; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+        </div>
       </div>
       <ul v-if="typeof focusedItem === 'string'" class="contextmenu-list">
         <li>
@@ -595,9 +589,6 @@ export default {
             : url.searchParams.delete("p");
           window.history.pushState(null, "", url.toString());
         }
-        document.title = this.cwd.replace(/.*\/(?!$)|\//g, "") === "/" 
-            ? "FlareDrive-R2 - 优雅的 Cloudflare R2 网盘文件库"
-            :`${this.cwd.replace(/.*\/(?!$)|\//g, "") || "/" } - 优雅的 Cloudflare R2 网盘文件库`;
       },
       immediate: true,
     },
@@ -650,6 +641,7 @@ export default {
   button.circle {
     padding: 0 8px;
   }
+
   .menu-button-text {
     display: none !important;
   }
