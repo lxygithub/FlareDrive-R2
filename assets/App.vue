@@ -14,7 +14,7 @@
     <div class="app-bar">
       <a class="app-title-container" style="display: flex; align-items: center;" href="/">
         <img src="/assets/homescreen.png" alt="FlareDrive" style="height: 24px" />
-        <h1 class="app-title" style="font-size: 20px;margin: 0 25px 0 8px; user-select: none;">CloudFlare网盘</h1>
+        <h1 class="app-title" style="font-size: 20px;margin: 0 25px 0 8px; user-select: none;">CF网盘</h1>
       </a>
 
       <input type="search" v-model="search" aria-label="Search" placeholder="输入以全局搜索文件" />
@@ -691,5 +691,12 @@ export default {
   position: absolute;
   top: 100%;
   right: 0;
+}
+
+.file-item{
+  background-color: bisque;
+  border-radius: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
