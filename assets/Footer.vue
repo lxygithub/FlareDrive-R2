@@ -4,10 +4,6 @@
 
     </div>
 
-    <div class="stats">
-      访问次数：<span id="vercount_value_site_pv">0</span>次 | 访客人数：<span id="vercount_value_site_uv">0</span>人
-    </div>
-
     <div class="project-links">
       <strong>基于:</strong><a href="https://github.com/willow-god/FlareDrive-R2" target="_blank"
         rel="noopener noreferrer">FlareDrive-R2</a>
@@ -63,11 +59,6 @@ export default {
 
 .icon-link:hover {
   fill: #444;
-}
-
-.stats {
-  margin: 10px 0;
-  color: #444;
 }
 
 .project-links {

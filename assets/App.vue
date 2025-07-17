@@ -107,9 +107,9 @@
     </div>
     <Dialog v-model="showContextMenu">
       <div
-        style="height: 50px;display: flex; justify-content: center; align-items: center; padding:10px; background: #ddd; margin: 0 0 10px 0; border-radius: 8px;">
+        style="height: 50px;display: flex; justify-content: center; align-items: center; padding:5px; background: #ddd; margin: 0 0 10px 0; border-radius: 8px;">
         <div v-text="focusedItem.key || focusedItem" class="contextmenu-filename" @click.stop.prevent
-          style="height:20px;width: 100%; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+          style="width: 100%; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
         </div>
       </div>
       <ul v-if="typeof focusedItem === 'string'" class="contextmenu-list">
