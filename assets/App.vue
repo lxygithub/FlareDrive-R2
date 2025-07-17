@@ -14,13 +14,12 @@
     <div class="app-bar">
       <a class="app-title-container" style="display: flex; align-items: center;" href="/">
         <img src="/assets/homescreen.png" alt="FlareDrive" style="height: 24px" />
-        <h1 class="app-title" style="font-size: 20px;margin: 0 25px 0 8px; user-select: none;">网盘</h1>
       </a>
 
       <input type="search" v-model="search" aria-label="Search" placeholder="输入以全局搜索文件" />
       <div class="menu-button">
         <button class="circle" @click="showMenu = true"
-          style="display: flex; align-items: center;background-color: rgb(245, 245, 245);">
+          style="display: flex; align-items: center;">
           <svg t="1741761597964" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
             p-id="22027" width="24" height="24">
             <path
