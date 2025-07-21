@@ -1,6 +1,14 @@
 import { S3Client } from "@/utils/s3";
-
+import {get_auth_status} from "@/utils/auth";
 async function getCurrentBucket(context) {
+  if(!get_auth_status(context)){
+    var header = new Headers()
+    header.set("WWW-Authenticate",'Basic realm="需要登录"')
+    return new Response("没有操作权限", {
+        status: 401,
+        headers: header,
+    });
+   }
   const { request, env } = context;
   const url = new URL(request.url);
   const driveid = url.hostname.replace(/\..*/, "");
@@ -41,6 +49,14 @@ async function getCurrentBucket(context) {
 
 export async function onRequestGet(context) {
   try {
+    if (!get_auth_status(context)) {
+      var header = new Headers()
+      header.set("WWW-Authenticate", 'Basic realm="需要登录"')
+      return new Response("没有操作权限", {
+        status: 401,
+        headers: header,
+      });
+    }
     const { request, env } = context;
 
     const url = new URL(request.url);
